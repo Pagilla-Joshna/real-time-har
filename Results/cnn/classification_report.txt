@@ -1,0 +1,12 @@
+              precision    recall  f1-score   support
+
+      boxing       1.00      0.89      0.94        36
+handclapping       0.97      1.00      0.99        36
+  handwaving       0.95      1.00      0.97        36
+     jogging       0.62      0.64      0.63        36
+     running       0.71      0.69      0.70        36
+     walking       0.81      0.83      0.82        36
+
+    accuracy                           0.84       216
+   macro avg       0.84      0.84      0.84       216
+weighted avg       0.84      0.84      0.84       216
