@@ -123,7 +123,7 @@ real-time-human-action-recognition/
 
 Clone the repository:
 
-git clone https://github.com/Pagilla-Joshna/real-time-human-action-recognition.git
+git clone https://github.com/Pagilla-Joshna/real-time-har.git
 
 Navigate to the project directory:
 
