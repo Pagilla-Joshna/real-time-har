@@ -65,7 +65,7 @@ Softmax
      ↓
 Action Classification
 ```
-Technologies Used
+## Technologies Used
 Python
 TensorFlow
 Keras
@@ -75,7 +75,7 @@ Bidirectional LSTM
 NumPy
 Scikit-learn
 Matplotlib
-Dataset
+## Dataset
 
 This project uses the KTH Human Action Dataset.
 
@@ -91,14 +91,14 @@ Walking
 The original dataset is not included in this repository because of
 its large size.
 
-Download the Dataset
+### Download the Dataset
 
 The KTH Human Action Dataset can be downloaded from the official KTH website:
 
 KTH Human Action Dataset
 
 After downloading the dataset, organize the videos locally as follows:
-
+```text
 data/
 ├── boxing/
 ├── handclapping/
@@ -106,9 +106,9 @@ data/
 ├── jogging/
 ├── running/
 └── walking/
-
+```
 The extracted frames can be stored in:
-
+```text
 data_frames/
 ├── boxing/
 ├── handclapping/
@@ -116,11 +116,12 @@ data_frames/
 ├── jogging/
 ├── running/
 └── walking/
-
+```
 The data/ and data_frames/ directories are intentionally not
 included in this GitHub repository because of their large size.
 
-Project Structure
+## Project Structure
+```text
 real-time-har/
 │
 ├── preprocessing/
@@ -143,56 +144,79 @@ real-time-har/
 ├── requirements.txt
 ├── .gitignore
 └── README.md
-Installation
-1. Clone the Repository
+```
+## Installation
+
+1. Clone the Repository 
+```text
 git clone https://github.com/Pagilla-Joshna/real-time-har.git
+```
 2. Navigate to the Project Directory
+```text
 cd real-time-har
+```
 3. Create a Virtual Environment
+```text
 python -m venv har_env
+```
 4. Activate the Virtual Environment
 Windows PowerShell
+```text
 .\har_env\Scripts\Activate.ps1
+```
 Windows Command Prompt
+```text
 har_env\Scripts\activate
+```
 5. Install Dependencies
+```text
 pip install -r requirements.txt
-Dataset Preprocessing
+```
+## Dataset Preprocessing
 
 After downloading and organizing the KTH dataset in the data/
 directory, frame extraction can be performed using:
-
+```text
 python preprocessing/frame_extractor.py
-
+```
 The dataset can then be prepared for training using:
-
+```text
 python preprocessing/dataset_builder.py
-
+```
 For subject-based dataset preparation:
-
+```text
 python preprocessing/dataset_builder_subject.py
-Model Training
+```
+## Model Training
 
 The main proposed model can be trained using:
-
+```text
 python training/train_model.py
-
+```
 Other model architectures implemented in this project include:
 
 CNN Model
+```text
 python training/Train_cnn_model.py
+```
 CNN + LSTM Model
+```text
 python training/train_cnn_lstm_model.py
+```
 BiLSTM + Attention Model
+```text
 python training/train_attention_model.py
+```
 Subject-Based Model
+```text
 python training/Train_subject_model.py
-Model Evaluation
+```
+## Model Evaluation
 
 After training the models, evaluation can be performed using:
-
+```text
 python training/evaluate_models.py
-
+```
 The evaluation process can be used to analyze model performance using
 metrics such as:
 
@@ -212,41 +236,43 @@ above.
 The models/ directory is therefore intentionally excluded from the
 GitHub repository.
 
-Real-Time Human Action Recognition
+## Real-Time Human Action Recognition
 
 After training the model, real-time action recognition can be performed
 using a webcam:
-
+```text
 python real_time.py
-
+```
 The system uses OpenCV to capture webcam frames and predict the
 corresponding human action.
 
 Video Testing
 
-The trained model can also be tested using video input:
-
+The trained model can also be tested using video:
+Place the pre recorded video inside test folder to see the output.
+```text
 python video_test_input.py
-Results
+```
+## Results
 
 The models were evaluated based on their classification performance.
 
-Model	Accuracy
-MobileNetV2 (CNN)	84.26%
-MobileNetV2 + LSTM	87.04%
+Model	                        Accuracy
+MobileNetV2 (CNN)	               84.26%
+MobileNetV2 + LSTM	               87.04%
 MobileNetV2 + BiLSTM + Attention	93.06%
 MobileNetV2 + BiLSTM (Proposed)	95.37%
 
 The proposed MobileNetV2 + BiLSTM model achieved a reported accuracy
 of 95.37%.
 
-Results and Visualizations
+## Results and Visualizations
 
 The Results/ directory contains the generated evaluation results
 and visualizations, such as model performance graphs and evaluation
 outputs.
 
-Future Improvements
+## Future Improvements
 Support for additional human action classes
 Improved real-time inference performance
 Training with larger and more diverse datasets
