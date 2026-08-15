@@ -6,12 +6,12 @@ human activities from video sequences.
 
 ## Overview
 
-The system combines MobileNetV2 for spatial feature extraction and
-Bidirectional LSTM for learning temporal patterns from sequences of
-video frames.
+This project combines MobileNetV2 for spatial feature extraction and
+Bidirectional LSTM (BiLSTM) for learning temporal patterns from
+sequences of video frames.
 
-The trained model can be used for real-time human action recognition
-using webcam input and OpenCV.
+The system is designed for real-time human action recognition using
+webcam input and OpenCV.
 
 ## Actions Recognized
 
@@ -24,55 +24,81 @@ The system recognizes six human actions:
 - Running
 - Walking
 
+## Objectives
+
+- Develop a hybrid MobileNetV2 and BiLSTM model for human action recognition.
+- Capture both spatial and temporal features from video sequences.
+- Achieve high classification accuracy while maintaining a lightweight model.
+- Evaluate the model using accuracy, precision, recall, F1-score, and confusion matrix.
+- Implement real-time human action recognition using webcam input.
+
 ## Methodology
+
+The project follows these main steps:
 
 1. Dataset collection
 2. Frame extraction
 3. Image resizing and normalization
 4. Data preprocessing and augmentation
 5. Spatial feature extraction using MobileNetV2
-6. Temporal sequence learning using BiLSTM
-7. Softmax-based action classification
+6. Temporal sequence learning using Bidirectional LSTM
+7. Action classification using a Softmax layer
 8. Model evaluation
-9. Real-time prediction using OpenCV
+9. Real-time prediction using OpenCV and webcam input
 
 ## Model Architecture
 
-MobileNetV2 → BiLSTM → Dense → Softmax
-
-## Technologies
-
-- Python
-- TensorFlow
-- Keras
-- OpenCV
-- MobileNetV2
-- BiLSTM
-- NumPy
-- Scikit-learn
-
-## Dataset
-
-This project uses the **KTH Human Action Dataset**.
-
-The dataset contains six human action classes performed by multiple
-subjects in different scenarios.
-
-The original dataset is **not included in this repository because of
-its large size**.
-
-### Download Dataset
-
-Download the KTH Action Dataset from the official KTH website:
-
-https://www.csc.kth.se/cvap/actions/
-
-After downloading the dataset, organize the videos according to the
-action classes used by the preprocessing scripts.
-
-The dataset should be placed locally in:
-
 ```text
+Input Video
+     ↓
+Frame Extraction
+     ↓
+MobileNetV2
+(Spatial Feature Extraction)
+     ↓
+Bidirectional LSTM
+(Temporal Feature Learning)
+     ↓
+Dense Layer
+     ↓
+Softmax
+     ↓
+Action Classification
+
+Technologies Used
+Python
+TensorFlow
+Keras
+OpenCV
+MobileNetV2
+Bidirectional LSTM
+NumPy
+Scikit-learn
+Matplotlib
+Dataset
+
+This project uses the KTH Human Action Dataset.
+
+The dataset contains six human action classes used in this project:
+
+Boxing
+Handclapping
+Handwaving
+Jogging
+Running
+Walking
+
+The original dataset is not included in this repository because of
+its large size.
+
+Download the Dataset
+
+The KTH Human Action Dataset can be downloaded from the official KTH website:
+
+KTH Human Action Dataset
+
+After downloading the dataset, organize the videos locally as follows:
+
 data/
 ├── boxing/
 ├── handclapping/
@@ -81,8 +107,7 @@ data/
 ├── running/
 └── walking/
 
-The extracted video frames can then be generated using the preprocessing
-scripts and stored in:
+The extracted frames can be stored in:
 
 data_frames/
 ├── boxing/
@@ -92,8 +117,11 @@ data_frames/
 ├── running/
 └── walking/
 
-### Project Structure
-real-time-human-action-recognition/
+The data/ and data_frames/ directories are intentionally not
+included in this GitHub repository because of their large size.
+
+Project Structure
+real-time-har/
 │
 ├── preprocessing/
 │   ├── dataset_builder.py
@@ -108,88 +136,120 @@ real-time-human-action-recognition/
 │   ├── Train_subject_model.py
 │   └── evaluate_models.py
 │
-├── models/
-│   └── best_models.keras
-│
 ├── Results/
 │
 ├── real_time.py
-├── realtim.py
 ├── video_test_input.py
 ├── requirements.txt
+├── .gitignore
 └── README.md
-
-## Installation
-
-Clone the repository:
-
+Installation
+1. Clone the Repository
 git clone https://github.com/Pagilla-Joshna/real-time-har.git
-
-Navigate to the project directory:
-
-cd real-time-human-action-recognition
-
-Install the required packages:
-
+2. Navigate to the Project Directory
+cd real-time-har
+3. Create a Virtual Environment
+python -m venv har_env
+4. Activate the Virtual Environment
+Windows PowerShell
+.\har_env\Scripts\Activate.ps1
+Windows Command Prompt
+har_env\Scripts\activate
+5. Install Dependencies
 pip install -r requirements.txt
+Dataset Preprocessing
 
-### Preprocessing
-
-After downloading and placing the KTH dataset in the data/ directory,
-run the frame extraction script:
+After downloading and organizing the KTH dataset in the data/
+directory, frame extraction can be performed using:
 
 python preprocessing/frame_extractor.py
 
-The extracted frames can then be used to build the training dataset:
+The dataset can then be prepared for training using:
 
 python preprocessing/dataset_builder.py
 
-###Training
+For subject-based dataset preparation:
 
-To train the proposed MobileNetV2 + BiLSTM model:
+python preprocessing/dataset_builder_subject.py
+Model Training
+
+The main proposed model can be trained using:
 
 python training/train_model.py
 
-The training process generates the trained model and saves the required
-model files for evaluation and inference.
+Other model architectures implemented in this project include:
 
-### Model Evaluation
+CNN Model
+python training/Train_cnn_model.py
+CNN + LSTM Model
+python training/train_cnn_lstm_model.py
+BiLSTM + Attention Model
+python training/train_attention_model.py
+Subject-Based Model
+python training/Train_subject_model.py
+Model Evaluation
 
-To evaluate the trained model:
+After training the models, evaluation can be performed using:
 
 python training/evaluate_models.py
 
-Evaluation can include metrics such as accuracy, precision, recall,
-F1-score and confusion matrix.
+The evaluation process can be used to analyze model performance using
+metrics such as:
 
-### Real-Time Recognition
+Accuracy
+Precision
+Recall
+F1-score
+Confusion Matrix
+Trained Models
 
-After training the model, run the real-time recognition program:
+The trained .keras model files are not included in this repository
+because of their large file size.
+
+The models can be generated by running the training scripts described
+above.
+
+The models/ directory is therefore intentionally excluded from the
+GitHub repository.
+
+Real-Time Human Action Recognition
+
+After training the model, real-time action recognition can be performed
+using a webcam:
 
 python real_time.py
 
-The system uses webcam input and OpenCV to recognize human actions in
-real time.
+The system uses OpenCV to capture webcam frames and predict the
+corresponding human action.
 
-###Video Testing
+Video Testing
 
-For testing the model using a video file:
+The trained model can also be tested using video input:
 
 python video_test_input.py
 Results
 
-The proposed MobileNetV2 + BiLSTM model achieved a reported accuracy of
-95.37% in the project evaluation.
+The models were evaluated based on their classification performance.
 
-Model	                            Accuracy
-MobileNetV2 (CNN)	                 84.26%
-MobileNetV2 + LSTM	               87.04%
-MobileNetV2 + BiLSTM + Attention	 93.06%
-MobileNetV2 + BiLSTM (Proposed)	   95.37%
+Model	Accuracy
+MobileNetV2 (CNN)	84.26%
+MobileNetV2 + LSTM	87.04%
+MobileNetV2 + BiLSTM + Attention	93.06%
+MobileNetV2 + BiLSTM (Proposed)	95.37%
 
-### Future Improvements
+The proposed MobileNetV2 + BiLSTM model achieved a reported accuracy
+of 95.37%.
+
+Results and Visualizations
+
+The Results/ directory contains the generated evaluation results
+and visualizations, such as model performance graphs and evaluation
+outputs.
+
+Future Improvements
 Support for additional human action classes
 Improved real-time inference performance
-Larger and more diverse datasets
-Edge-device deployment
+Training with larger and more diverse datasets
+Deployment on edge devices
 Web-based application deployment
+Improved real-time prediction accuracy
