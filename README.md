@@ -48,6 +48,7 @@ The project follows these main steps:
 
 ## Model Architecture
 
+```text
 Input Video
      ↓
 Frame Extraction
@@ -63,7 +64,7 @@ Dense Layer
 Softmax
      ↓
 Action Classification
-
+```
 Technologies Used
 Python
 TensorFlow
