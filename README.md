@@ -48,7 +48,6 @@ The project follows these main steps:
 
 ## Model Architecture
 
-```text
 Input Video
      ↓
 Frame Extraction
