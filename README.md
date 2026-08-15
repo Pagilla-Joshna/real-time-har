@@ -92,7 +92,7 @@ data_frames/
 ├── running/
 └── walking/
 
-**### Project Structure**
+### Project Structure
 real-time-human-action-recognition/
 │
 ├── preprocessing/
